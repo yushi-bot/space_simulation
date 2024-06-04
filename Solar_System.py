@@ -45,7 +45,7 @@ label = ["sun",
 color = [
     "red",  # 太阳
     "gold", "yellow", "blue",  # 水, 金, 地
-    "maroon", "goldenrod", "darkgoldenrod",  # 火, 木, 土
+    "firebrick", "goldenrod", "darkgoldenrod",  # 火, 木, 土
     "skyblue", "steelblue"
 ]
 

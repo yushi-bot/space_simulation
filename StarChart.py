@@ -53,7 +53,7 @@ class StarChart:
             """
             self.scatter = ax.plot(self.location[0], self.location[1], self.color,
                                    marker='o',
-                                   markersize=(10 + 0.5 * np.log10(self.mass)))[-1]
+                                   markersize=(20 + 0.8 * np.log10(self.mass)))[-1]
             self.trace = ax.plot([self.location[0]], [self.location[1]], self.color)[-1]
             if len(self.chart.label) > self.index:
                 self.scatter.set_label(self.chart.label[self.index])

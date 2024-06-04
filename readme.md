@@ -1,7 +1,8 @@
 # 天体模拟
 # Space Simulation
 通过python代码模拟天体运行，只使用了简单的牛顿力学模型和简单的欧拉积分
-##模拟结果
+## 模拟结果
+
 ## simulation results
 ### 地月系模拟
 <div align="center"> <img src="/results/地月拉格朗日点模拟结果.gif" width = 400 height = 400 /> </div>

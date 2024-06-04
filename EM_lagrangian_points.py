@@ -22,18 +22,20 @@ moon = {
     "position": np.array([R, 0]),
     "v": np.array([0, v]),
 }
+factor = 7.342e22/5.972e24
+factor_1_3 = np.power(factor/3, 1/3)
 Lagrangian_points = {  # 拉格朗日点坐标
     "L1": {
-        "loc": np.array([(1-0.1596003)*R, 0]),
-        "v":  np.array([0, 2 * np.pi / T * (1-0.1596003)*R])
+        "loc": np.array([(1-factor_1_3)*R, 0]),
+        "v":  np.array([0, 2 * np.pi / T * (1-factor_1_3)*R])
     },
     "L2": {
-        "loc": np.array([(1+0.1595926)*R, 0]),
-        "v": np.array([0, 2 * np.pi / T * (1+0.1595926)*R])
+        "loc": np.array([(1+factor_1_3)*R, 0]),
+        "v": np.array([0, 2 * np.pi / T * (1+factor_1_3)*R])
     },
     "L3": {
-        "loc": np.array([-0.992886*R, 0]),
-        "v": np.array([0, 2 * np.pi / T * -3.816e8])
+        "loc": np.array([-(1+factor*5/12)*R, 0]),
+        "v": np.array([0, 2 * np.pi / T * -(1+factor*5/12)*R])
     },
     "L4": {
         "loc":np.array([R*0.5, R*1.732/2]),

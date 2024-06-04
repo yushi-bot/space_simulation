@@ -5,7 +5,7 @@ import numpy as np
 '''
 
 tol = 1e-6
-aTol = 10
+aTol = 20
 colors = ['b', 'y', 'r', 'g', 'c', 'm', 'k']
 
 
@@ -65,10 +65,10 @@ class StarChart:
             """
             if not self.broken:
                 self.scatter.set_data([self.location[0]], [self.location[1]])  # 更新点的位置
-                self.trace.set_data(self.trail[0], self.trail[1])  # 更新轨迹
+                self.trace.set_data(self.trail[0][-3000:], self.trail[1][-3000:])  # 更新轨迹
             if self.broken:
                 self.scatter.set_data([], [])  # 撞毁后
-                self.trace.set_data(self.trail[0], self.trail[1])  # 撞毁后跟着星星走
+                self.trace.set_data(self.trail[0][-3000:], self.trail[1][-3000:])  # 撞毁后跟着星星走
 
     def __init__(self, label=None, color=None, ref_length=1, refTime=1, refMass=1):
         if color is None:

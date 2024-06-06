@@ -5,7 +5,7 @@ import numpy as np
 '''
 
 tol = 1e-6
-aTol = 20
+aTol = 10
 colors = ['b', 'y', 'r', 'g', 'c', 'm', 'k']
 
 

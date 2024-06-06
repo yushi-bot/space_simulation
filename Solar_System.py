@@ -37,7 +37,7 @@ for i in range(len(planets_radial)):  # 逐一计算轨道周期和初始线速�
     r_p = planets_radial[i]
     T_p = 1 * np.sqrt(r_p * r_p * r_p)  # 开普勒第三定律
     planets_period.append(T_p)
-    v_p = r_p / T_p  # 依旧以地球速度为归一化单位
+    v_p = r_p / T_p  # 依旧以地球(平均)速度为归一化单位
     planets_initial_vec.append(v_p * np.sqrt(2 / (1 + planets_e[i]) - 1))
 
 planets_names = [

@@ -21,7 +21,7 @@ planets_mass = [
     0.1074, 317.94, 95.18,  # 火星, 木星, 土星
     14.63, 17.22  # 天王, 海王
 ]
-planets_radial = [  # 轨道半轴长
+planets_radial = [  # 轨道半长轴
     0.38, 0.72, 1,  # 水星, 金星, 地球
     1.52, 5.20, 9.54,  # 火星, 木星, 土星
     19.22, 30.06,  # 天王, 海王
@@ -38,7 +38,7 @@ for i in range(len(planets_radial)):  # 逐一计算轨道周期和初始线速�
     T_p = 1 * np.sqrt(r_p * r_p * r_p)  # 开普勒第三定律
     planets_period.append(T_p)
     v_p = r_p / T_p  # 依旧以地球速度为归一化单位
-    planets_initial_vec.append(v_p / (1 + planets_e[i]))
+    planets_initial_vec.append(v_p * np.sqrt(2 / (1 + planets_e[i]) - 1))
 
 planets_names = [
     "Mercury", "Venus", "Earth",
@@ -64,7 +64,7 @@ if __name__ == '__main__':
     solarChart.addBodies(sun["mass"], sun["position"], sun["v"])  # 置入太阳
     for i in range(len(planets_names)):  # 置入行星
         solarChart.addBodies(planets_mass[i] * earth_mass,  # 行星质量
-                             np.array([planets_radial[i] * AU * (1+planets_e[i]), 0.0]),  # 行星轨道半轴长
+                             np.array([planets_radial[i] * AU * (1+planets_e[i]), 0.0]),  # 远日点距离
                              np.array([0.0, planets_initial_vec[i] * earth_v])   # 行星初速度
                              )
     solarChart.setRefLength(AU)  # 比例尺

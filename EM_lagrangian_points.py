@@ -22,28 +22,28 @@ moon = {
     "position": np.array([R, 0]),
     "v": np.array([0, v]),
 }
-factor = 7.342e22/5.972e24
-factor_1_3 = np.power(factor/3, 1/3)
+factor = 7.342e22 / 5.972e24
+factor_1_3 = np.power(factor / 3, 1 / 3)
 Lagrangian_points = {  # 拉格朗日点坐标
     "L1": {
-        "loc": np.array([(1-factor_1_3)*R, 0]),
-        "v":  np.array([0, 2 * np.pi / T * (1-factor_1_3)*R])
+        "loc": np.array([(1 - factor_1_3) * R, 0]),
+        "v": np.array([0, 2 * np.pi / T * (1 - factor_1_3) * R])
     },
     "L2": {
-        "loc": np.array([(1+factor_1_3)*R, 0]),
-        "v": np.array([0, 2 * np.pi / T * (1+factor_1_3)*R])
+        "loc": np.array([(1 + factor_1_3) * R, 0]),
+        "v": np.array([0, 2 * np.pi / T * (1 + factor_1_3) * R])
     },
     "L3": {
-        "loc": np.array([-(1+factor*5/12)*R, 0]),
-        "v": np.array([0, 2 * np.pi / T * -(1+factor*5/12)*R])
+        "loc": np.array([-(1 + factor * 5 / 12) * R, 0]),
+        "v": np.array([0, 2 * np.pi / T * -(1 + factor * 5 / 12) * R])
     },
     "L4": {
-        "loc":np.array([R*0.5, R*1.732/2]),
-        "v":np.array([-v*1.732/2, v*0.5])
+        "loc": np.array([R * 0.5, R * 1.732 / 2]),
+        "v": np.array([-v * 1.732 / 2, v * 0.5])
     },
     "L5": {
-        "loc": np.array([R*0.5, -R*1.732/2]),
-        "v": np.array([v*1.732/2, v*0.5])
+        "loc": np.array([R * 0.5, -R * 1.732 / 2]),
+        "v": np.array([v * 1.732 / 2, v * 0.5])
     }
 }
 LMass = 1e6  # 置入该点的天体质量，足够小则可认为对行星无干扰
@@ -57,7 +57,7 @@ if __name__ == '__main__':
 
     myChart.setRefLength(R)  # 用轨道半径作参考长度
 
-    fig, a = plt.subplots()     # 用于绘图
+    fig, a = plt.subplots()  # 用于绘图
     ax = a
     for body in myChart.bodies:
         body.initPlotLines(ax)
@@ -69,31 +69,28 @@ if __name__ == '__main__':
     # 初始化动画
     ani = animation.FuncAnimation(fig, myChart.animationUpdate, fargs=tuple([0.01]), frames=range(10),
                                   interval=1, blit=True)
-    #plt.show()
+    # plt.show()
 
-        
-        
-    for i in range(1, 6):   # 逐个加入对应的拉格朗日空间站
+    for i in range(1, 6):  # 逐个加入对应的拉格朗日空间站
         plt.ion()
         plt.pause(1)
 
-
-        Lx = label[i+1]
+        Lx = label[i + 1]
 
         # 地月距离
         direction = myChart.bodies[1].location
-        dis = np.sqrt(direction[0]*direction[0] + direction[1]*direction[1])
+        dis = np.sqrt(direction[0] * direction[0] + direction[1] * direction[1])
         # 地月方向
-        direction = direction/dis
+        direction = direction / dis
 
         # 坐标变换，算出该时刻空间站的速度和位置
         lp_loc = Lagrangian_points[Lx]["loc"]
         lp_v = Lagrangian_points[Lx]["v"]
 
         loc = np.array([direction[0] * lp_loc[0] + -direction[1] * lp_loc[1],
-                       direction[1] * lp_loc[0] + direction[0] * lp_loc[1]])
+                        direction[1] * lp_loc[0] + direction[0] * lp_loc[1]])
         vec = np.array([direction[0] * lp_v[0] + -direction[1] * lp_v[1],
-                       direction[1] * lp_v[0] + direction[0] * lp_v[1]])
+                        direction[1] * lp_v[0] + direction[0] * lp_v[1]])
 
         myChart.addBodies(LMass, loc, vec, checkRef=True)
         myChart.bodies[-1].initPlotLines(ax)
@@ -101,6 +98,3 @@ if __name__ == '__main__':
 
     plt.ion()
     plt.pause(100)
-
-
-
